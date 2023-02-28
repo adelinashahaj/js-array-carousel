@@ -1,0 +1,30 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+    width: 50vw;
+    margin: auto;
+
+}
+.slider{
+    height: 70vh;
+    margin-top: 15vh;
+}
+.img-wrapper{
+    height: 100%;
+    display: none;
+}
+.image{
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+.img-wrapper.show{
+    display: block;
+}
+.image-list {
+    height: 100%;
+}
