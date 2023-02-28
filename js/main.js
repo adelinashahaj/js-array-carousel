@@ -12,7 +12,7 @@ for (let i = 0; i < imagesDom.length; i++) {
                                 <img class="image" src="${imagesDom[i]}" />
                             </div>`;
 
-    const newCircle = `<div class="circle"> <img class="image" src="${imagesDom[i]}" /></div>`;
+    const newCircle = `<div class="circle"><img class="image" src="${imagesDom[i]}" /></div>`;
     sliderContent += newImageWrapper;       
     circleContent += newCircle;
 }
@@ -25,7 +25,7 @@ const circlesDom = document.getElementsByClassName('circle');
 
 let activeImage = 0;
 
-imagesWrapperDom[activeImage].classList.add('show'); //TODO rivedere lo 0 in modo più flessibile
+imagesWrapperDom[activeImage].classList.add('show'); 
 circlesDom[activeImage].classList.add('current');
 
 const nextDom = document.querySelector('#next');
@@ -46,15 +46,21 @@ nextDom.addEventListener('click',
             prevDom.classList.remove('hide');
 
             if (activeImage == imagesWrapperDom.length - 1) {
+               
                 
             }
 
+        }else{
+            activeImage > imagesWrapperDom.length -1;
+            activeImage = 0;
+            
         }
     }
 );
 
 prevDom.addEventListener('click', 
     function() {
+        console.log(activeImage);
         if (activeImage > 0) {
 
             imagesWrapperDom[activeImage].classList.remove('show');
@@ -66,9 +72,13 @@ prevDom.addEventListener('click',
             nextDom.classList.remove('hide');
 
             if (activeImage == 0) {
-                prevDom.classList.add('hide');
+               
             }
 
+        }else{
+            activeImage < 0;
+            activeImage = imagesWrapperDom.length - 1;
+            
         }
     }
 );
