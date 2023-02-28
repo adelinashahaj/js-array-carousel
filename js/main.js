@@ -1,20 +1,74 @@
 
-const imagesDom = ["img/01.webp", "img/02.webp", "img/03.webp", "img/04.webp", "img/05.webp"];
+const imagesDom = ["img/1.webp", "img/2.webp", "img/3.webp", "img/4.webp", "img/5.webp"];
 
 const imageListDom = document.querySelector('.image-list');
-
+const circleContainerDom = document.querySelector('.circle-container');
 
 let sliderContent = "";
-
+let circleContent = "";
 
 for (let i = 0; i < imagesDom.length; i++) {
     const newImageWrapper = `<div class="image-wrapper">
                                 <img class="image" src="${imagesDom[i]}" />
                             </div>`;
 
-    
+    const newCircle = `<div class="circle"> <img class="image" src="${imagesDom[i]}" /></div>`;
     sliderContent += newImageWrapper;       
-    
+    circleContent += newCircle;
 }
 
 imageListDom.innerHTML = sliderContent;
+circleContainerDom.innerHTML = circleContent;
+
+const imagesWrapperDom = document.getElementsByClassName('image-wrapper');
+const circlesDom = document.getElementsByClassName('circle');
+
+let activeImage = 0;
+
+imagesWrapperDom[activeImage].classList.add('show'); //TODO rivedere lo 0 in modo più flessibile
+circlesDom[activeImage].classList.add('current');
+
+const nextDom = document.querySelector('#next');
+const prevDom = document.querySelector('#prev');
+
+nextDom.addEventListener('click', 
+
+    function() {
+        console.log(activeImage);
+        if (activeImage < imagesWrapperDom.length - 1) {
+
+            imagesWrapperDom[activeImage].classList.remove('show');
+            circlesDom[activeImage].classList.remove('current');
+            activeImage++;
+            imagesWrapperDom[activeImage].classList.add('show');
+            circlesDom[activeImage].classList.add('current');
+
+            prevDom.classList.remove('hide');
+
+            if (activeImage == imagesWrapperDom.length - 1) {
+                
+            }
+
+        }
+    }
+);
+
+prevDom.addEventListener('click', 
+    function() {
+        if (activeImage > 0) {
+
+            imagesWrapperDom[activeImage].classList.remove('show');
+            circlesDom[activeImage].classList.remove('current');
+            activeImage--;
+            imagesWrapperDom[activeImage].classList.add('show');
+            circlesDom[activeImage].classList.add('current');
+
+            nextDom.classList.remove('hide');
+
+            if (activeImage == 0) {
+                prevDom.classList.add('hide');
+            }
+
+        }
+    }
+);
